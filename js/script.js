@@ -115,15 +115,15 @@ function printQuote() {
     `
   }
 
-  if (quote.year) {
-    html += `
-      <span class="year">${quote.year}</span>
-    `
-  }
-
   if (quote.title) {
     html += `
       <span class="citation">${quote.title}</span>
+    `
+  }
+
+  if (quote.year) {
+    html += `
+      <span class="year">${quote.year}</span>
     `
   }
   html += `</p>`
