@@ -70,20 +70,30 @@ const quotes = [
     quote: `Disappointment and adversity can be catalysts for greatness.`,
     source: `Cathy Freeman`,
     title: `Olympic Gold medallist`
-  }
+  },
+  {
+    quote: `I do not try to dance better than anyone else. I only try to dance better than myself.`,
+    source: `Arianna Huffington`,
+    citation: `Thrive: The Third Metric to Redefining Success and Creating a Life of Well-Being, Wisdom, and Wonder`,
+    year: 2014
+  },
 ]
 
 
 /***
  * `getRandomQuote` function
 ***/
+function getRandomQuote() {
 
+}
 
 
 /***
  * `printQuote` function
 ***/
+function printQuote() {
 
+}
 
 
 /***
