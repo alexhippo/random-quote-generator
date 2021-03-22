@@ -6,11 +6,11 @@ Author: Alex Hipolito
 
 /*** 
  * `quotes` array 
- * quote - a String containing the quote
- * source - a String containing who said the quote
- * title (optional) - a String containing the source's role or achievements
- * citation (optional) - a String containing where the quote was said/stated/written
- * year (optional) - an Integer containing the Year when the quote was said/stated/written
+ * quote - a String containing the actual quote
+ * source - a String containing the person or character who said it
+ * title (optional) - a String containing the source's role or famous achievements
+ * citation (optional) - a String containing a reference to the source of the quote e.g. book, movie, song, speech
+ * year (optional) - an Number representing the year the quote originated
 ***/
 const quotes = [
   {
@@ -23,6 +23,7 @@ const quotes = [
   {
     quote: `Grit is living life like it's a marathon, not a sprint.`,
     source: `Angela Lee Duckworth`,
+    title: `Academic, psychologist & science author`,
     citation: `Grit: The Power of Passion and Perseverance`,
     year: 2016
   },
@@ -35,7 +36,7 @@ const quotes = [
   {
     quote: `Dream with ambition, lead with conviction, and see yourselves in a way that others may not simply because they've never seen it before.`,
     source: `Kamala Harris`,
-    title: `Vice President of United States of America`,
+    title: `US Vice President`,
     year: 2020
   },
   {
@@ -53,6 +54,7 @@ const quotes = [
   {
     quote: `Humans are allergic to change. They love to say, "We've always done it this way." I try to fight that. That’s why I have a clock on my wall that runs counter-clockwise.`,
     source: `Grace Hopper`,
+    title: `Computer scientist`,
     citation: `"The Wit and Wisdom of Grace Hopper" by Philip Schieber`,
     year: 1987
   },
@@ -69,7 +71,7 @@ const quotes = [
   {
     quote: `Disappointment and adversity can be catalysts for greatness.`,
     source: `Cathy Freeman`,
-    title: `Olympic Gold medallist`
+    title: `Olympic Gold Medallist`
   },
   {
     quote: `I do not try to dance better than anyone else. I only try to dance better than myself.`,
@@ -77,22 +79,55 @@ const quotes = [
     citation: `Thrive: The Third Metric to Redefining Success and Creating a Life of Well-Being, Wisdom, and Wonder`,
     year: 2014
   },
+  {
+    quote: `Do you want to be a leader that looks back in time and say that you were on the wrong side of the argument when the world was crying out for a solution?`,
+    source: `Jacinda Ardern`,
+    citation: `World Economic Forum`,
+    title: `New Zealand Prime Minister`,
+  },
 ]
 
 
 /***
  * `getRandomQuote` function
+ * Generate a random number from 0 to the number of quotes in the `quotes` array 
+ * and use that to return a random quote object from the `quotes` array.
 ***/
-function getRandomQuote() {
-
+function getRandomQuote(quotes) {
+  const randomNumber = Math.floor(Math.random() * quotes.length - 1) + 1;
+  return quotes[randomNumber];
 }
 
 
 /***
  * `printQuote` function
+ * Display the quote generated from getRandomQuotes(quotes) onto the web page
 ***/
 function printQuote() {
+  const quote = getRandomQuote(quotes);
+  let html = `
+    <p class="quote">${quote.quote}</p>
+    <p class="source">${quote.source}
+  `
+  if (quote.citation) {
+    html += `
+      <span class="citation">${quote.citation}</span>
+    `
+  }
 
+  if (quote.year) {
+    html += `
+      <span class="year">${quote.year}</span>
+    `
+  }
+
+  if (quote.title) {
+    html += `
+      <span class="citation">${quote.title}</span>
+    `
+  }
+  html += `</p>`
+  document.getElementById("quote-box").innerHTML = html;
 }
 
 
