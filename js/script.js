@@ -6,6 +6,11 @@ Author: Alex Hipolito
 
 /*** 
  * `quotes` array 
+ * quote - a String containing the quote
+ * source - a String containing who said the quote
+ * title (optional) - a String containing the source's role or achievements
+ * citation (optional) - a String containing where the quote was said/stated/written
+ * year (optional) - an Integer containing the Year when the quote was said/stated/written
 ***/
 const quotes = [
   {
