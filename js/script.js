@@ -7,84 +7,75 @@ Author: Alex Hipolito
 /*** 
  * `quotes` array 
  * quote - a String containing the actual quote
- * source - a String containing the person or character who said it
- * title (optional) - a String containing the source's role or famous achievements
- * citation (optional) - a String containing a reference to the source of the quote e.g. book, movie, song, speech
- * year (optional) - an Number representing the year the quote originated
+ * source - a String containing the name of the character who said it
+ * altName (optional) - (additional quote object property) a String containing the source's alternative Hero/Villain name
+ * citation (optional) - a String containing a reference to the source of the quote e.g. movie or series
+ * year (optional) - an Number representing the year the movie/series was published
 ***/
 const quotes = [
   {
-    quote: `What would you do if you weren't afraid?`,
-    source: `Sheryl Sandberg`,
-    title: `Chief Operating Officer of Facebook`,
-    citation: `Lean In: Women, Work and the Will to Lead`,
-    year: 2013
-  },
-  {
-    quote: `Grit is living life like it's a marathon, not a sprint.`,
-    source: `Angela Lee Duckworth`,
-    title: `Academic and psychologist`,
-    citation: `Grit: The Power of Passion and Perseverance`,
-    year: 2016
-  },
-  {
-    quote: `If you don't get out there and define yourself, you'll be quickly and inaccurately defined by others.`,
-    source: `Michelle Obama`,
-    citation: `Becoming`,
+    quote: `Why was she up there all this time?`,
+    source: `Okoye`,
+    citation: `Avengers: Infinity War`,
     year: 2018
   },
   {
-    quote: `Dream with ambition, lead with conviction, and see yourselves in a way that others may not simply because they've never seen it before.`,
-    source: `Kamala Harris`,
-    title: `US Vice President`,
-    year: 2020
+    quote: `I know my value. Anyone else's opinion doesn't really matter.`,
+    source: `Peggy Carter`,
+    citation: `Agent Carter`
   },
   {
-    quote: `Do all the good you can, for all the people you can, in all the ways you can, as long as you can.`,
-    source: `Hilary Clinton`,
-    citation: `Twitter`,
+    quote: `Just because something works doesn't mean it can't be improved.`,
+    source: `Shuri`,
+    citation: `Black Panther`,
+    year: 2018
+  },
+  {
+    quote: `She's not alone.`,
+    source: `Natasha Romanoff`,
+    altName: `Black Widow`,
+    citation: `Avengers: Infinity War`,
+    year: 2018
+  },
+  {
+    quote: `You didn't think you were the only magical girl in town, did you?`,
+    source: `Agnes`,
+    altName: `Agatha Harkness`,
+    citation: `WandaVision`,
+    year: 2021
+  },
+  {
+    quote: `"In a given space, only the witch who cast them can use her magic." Thanks for the lesson. But I don't need you to tell me who I am.`,
+    source: `Wanda Maximoff`,
+    altName: `Scarlet Witch`,
+    citation: `WandaVision`,
+    year: 2021
+  },
+  {
+    quote: `We never lose our demons...we only learn to live above them.`,
+    source: `The Ancient One`,
+    citation: `Doctor Strange`,
     year: 2016
   },
   {
-    quote: `What other people label or might try to call failure, I have learned is just God's way of pointing you in a new direction.`,
-    source: `Oprah Winfrey`,
-    citation: `Commencement speech at Howard University`,
-    year: 2007
+    quote: `I have nothing to prove to you.`,
+    source: `Carol Danvers`,
+    altName: `Captain Marvel`,
+    citation: `Captain Marvel`,
+    year: 2019
   },
   {
-    quote: `Humans are allergic to change. They love to say, "We've always done it this way." I try to fight that. That’s why I have a clock on my wall that runs counter-clockwise.`,
-    source: `Grace Hopper`,
-    title: `Computer scientist`,
-    citation: `"The Wit and Wisdom of Grace Hopper" by Philip Schieber`,
-    year: 1987
+    quote: `I'm not a queen or a monster. I'm the Goddess of Death.`,
+    source: `Hela`,
+    citation: `Thor: Ragnarok`,
+    year: 2017
   },
   {
-    quote: `There is no greater weapon than knowledge and no greater source of knowledge than the written word.`,
-    source: `Malala Yousafzai`,
-    year: 2013
-  },
-  {
-    quote: `When you have a dream you have to work hard to achieve that dream. Your dreams when you are young can be the force that keeps you going.`,
-    source: `Evonne Goolagong Cawley`,
-    title: `Tennis champion, winner of 7 Grand Slam titles`
-  },
-  {
-    quote: `Disappointment and adversity can be catalysts for greatness.`,
-    source: `Cathy Freeman`,
-    title: `Olympic Gold Medallist`
-  },
-  {
-    quote: `I do not try to dance better than anyone else. I only try to dance better than myself.`,
-    source: `Arianna Huffington`,
-    citation: `Thrive: The Third Metric to Redefining Success and Creating a Life of Well-Being, Wisdom, and Wonder`,
+    quote: `I have lived most of my life surrounded by my enemies. I would be grateful to die surrounded by my friends.`,
+    source: `Gamora`,
+    citation: `Guardians of the Galaxy`,
     year: 2014
-  },
-  {
-    quote: `Do you want to be a leader that looks back in time and say that you were on the wrong side of the argument when the world was crying out for a solution?`,
-    source: `Jacinda Ardern`,
-    citation: `World Economic Forum`,
-    title: `New Zealand Prime Minister`,
-  },
+  }
 ]
 
 /***
@@ -99,13 +90,16 @@ function getRandomQuote(quotes) {
 
 /***
  * `getRandomBgColour` function
- * Generate a random number from 0 to the number of colours in the `colours` array 
- * and use that to return a random colour to use as a background colour.
+ * Generate a random background colour in rgb() format
+ * by generating random Red, Green and Blue values as an array
+ * then converting into a string to use as input for rgb()
+ * Max value of 156 was used to ensure background colour is darker
+ * and quote is more readable with white text.
 ***/
 function getRandomBgColour() {
   let colour = [];
   for (let i = 1; i <= 3; i++) {
-    colour.push(`${Math.floor(Math.random() * 256)}`);
+    colour.push(`${Math.floor(Math.random() * 156)}`);
   }
   return `rgb(${colour.toString()})`;
 }
@@ -113,27 +107,25 @@ function getRandomBgColour() {
 /***
  * `printQuote` function
  * Display the quote generated from getRandomQuotes(quotes) onto the web page
+ * Displays additional quote object property "altName" if available
 ***/
 function printQuote() {
   const quote = getRandomQuote(quotes);
   let html = `
     <p class="quote">${quote.quote}</p>
     <p class="source">${quote.source}`
-  if (quote.title) {
-    html += `<span class="title">${quote.title}</span>`
-  }
 
-  if (quote.citation) {
-    html += `<span class="citation">${quote.citation}</span>`
-  }
+  if (quote.altName) html += `<span class="altName">${quote.altName}</span>`
+  if (quote.citation) html += `<span class="citation">${quote.citation}</span>`
+  if (quote.year) html += `<span class="year">${quote.year}</span>`
 
-  if (quote.year) {
-    html += `<span class="year">${quote.year}</span>`
-  }
   html += `</p>`
   document.getElementById("quote-box").innerHTML = html;
   document.querySelector("body").style = `background-color: ${getRandomBgColour()}`
 }
+
+//Initialise page with a quote
+printQuote();
 
 // Auto refresh quotes every 20 seconds
 window.setInterval(printQuote, 20000);

@@ -115,12 +115,12 @@ h1 {
   font-style: normal;
 }
 
-.title {
+.altName {
   font-style: normal;
 }
 
-.title:before {
-  content: ", ";
+.altName:before {
+  content: "/";
   font-style: normal;
 }
 
