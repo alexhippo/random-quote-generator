@@ -98,6 +98,17 @@ function getRandomQuote(quotes) {
   return quotes[randomNumber];
 }
 
+/***
+ * `getRandomBgColour` function
+ * Generate a random number from 0 to the number of colours in the `colours` array 
+ * and use that to return a random colour to use as a background colour;
+***/
+function getRandomBgColour() {
+  const colours = ['#3AC162', '#3E474F', '#42B4D6', '#E59A13', '#EF6C6C'];
+  const randomNumber = Math.floor(Math.random() * colours.length - 1) + 1;
+  return colours[randomNumber];
+}
+
 
 /***
  * `printQuote` function
@@ -121,6 +132,7 @@ function printQuote() {
   }
   html += `</p>`
   document.getElementById("quote-box").innerHTML = html;
+  document.querySelector("body").style = `background-color: ${getRandomBgColour()}`
 }
 
 
