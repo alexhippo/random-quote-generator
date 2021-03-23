@@ -16,14 +16,14 @@ const quotes = [
   {
     quote: `What would you do if you weren't afraid?`,
     source: `Sheryl Sandberg`,
-    title: `Chief Operating Officer, Facebook`,
+    title: `Chief Operating Officer of Facebook`,
     citation: `Lean In: Women, Work and the Will to Lead`,
     year: 2013
   },
   {
     quote: `Grit is living life like it's a marathon, not a sprint.`,
     source: `Angela Lee Duckworth`,
-    title: `Academic, psychologist & science author`,
+    title: `Academic and psychologist`,
     citation: `Grit: The Power of Passion and Perseverance`,
     year: 2016
   },
@@ -107,24 +107,17 @@ function printQuote() {
   const quote = getRandomQuote(quotes);
   let html = `
     <p class="quote">${quote.quote}</p>
-    <p class="source">${quote.source}
-  `
-  if (quote.citation) {
-    html += `
-      <span class="citation">${quote.citation}</span>
-    `
+    <p class="source">${quote.source}`
+  if (quote.title) {
+    html += `<span class="title">${quote.title}</span>`
   }
 
-  if (quote.title) {
-    html += `
-      <span class="citation">${quote.title}</span>
-    `
+  if (quote.citation) {
+    html += `<span class="citation">${quote.citation}</span>`
   }
 
   if (quote.year) {
-    html += `
-      <span class="year">${quote.year}</span>
-    `
+    html += `<span class="year">${quote.year}</span>`
   }
   html += `</p>`
   document.getElementById("quote-box").innerHTML = html;
