@@ -87,7 +87,6 @@ const quotes = [
   },
 ]
 
-
 /***
  * `getRandomQuote` function
  * Generate a random number from 0 to the number of quotes in the `quotes` array 
@@ -101,14 +100,15 @@ function getRandomQuote(quotes) {
 /***
  * `getRandomBgColour` function
  * Generate a random number from 0 to the number of colours in the `colours` array 
- * and use that to return a random colour to use as a background colour;
+ * and use that to return a random colour to use as a background colour.
 ***/
 function getRandomBgColour() {
-  const colours = ['#3AC162', '#3E474F', '#42B4D6', '#E59A13', '#EF6C6C'];
-  const randomNumber = Math.floor(Math.random() * colours.length - 1) + 1;
-  return colours[randomNumber];
+  let colour = [];
+  for (let i = 1; i <= 3; i++) {
+    colour.push(`${Math.floor(Math.random() * 256)}`);
+  }
+  return `rgb(${colour.toString()})`;
 }
-
 
 /***
  * `printQuote` function
@@ -135,6 +135,8 @@ function printQuote() {
   document.querySelector("body").style = `background-color: ${getRandomBgColour()}`
 }
 
+// Auto refresh quotes every 20 seconds
+window.setInterval(printQuote, 20000);
 
 /***
  * click event listener for the print quote button
