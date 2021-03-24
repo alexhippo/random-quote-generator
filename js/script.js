@@ -45,7 +45,7 @@ const quotes = [
     year: 2021
   },
   {
-    quote: `"In a given space, only the witch who cast them can use her magic." Thanks for the lesson. But I don't need you to tell me who I am.`,
+    quote: `Thanks for the lesson. But I don't need you to tell me who I am.`,
     source: `Wanda Maximoff`,
     altName: `Scarlet Witch`,
     citation: `WandaVision`,
@@ -77,6 +77,23 @@ const quotes = [
     year: 2014
   }
 ]
+/***
+ * Auto refresh quotes every 20 seconds
+ * Display a countdown timer to indicate how many seconds left before the quotes refresh
+***/
+let countdown = 20;
+window.setInterval(function () {
+  if (countdown <= 0) {
+    printQuote();
+    countdown = 20;
+    document.getElementById("load-quote").innerHTML = `Show another quote in ${countdown} seconds`
+  } else if (countdown === 1) {
+    document.getElementById("load-quote").innerHTML = `Show another quote in ${countdown} second`
+  } else {
+    document.getElementById("load-quote").innerHTML = `Show another quote in ${countdown} seconds`
+  }
+  countdown--;
+}, 1000)
 
 /***
  * `getRandomQuote` function
@@ -120,15 +137,20 @@ function printQuote() {
   if (quote.year) html += `<span class="year">${quote.year}</span>`
 
   html += `</p>`
+
   document.getElementById("quote-box").innerHTML = html;
+
+  //Reset countdown once a new quote is printed
+  countdown = 20;
+
   document.querySelector("body").style = `background-color: ${getRandomBgColour()}`
 }
 
-//Initialise page with a quote
+//Initialise page with a quote from quotes array
 printQuote();
 
-// Auto refresh quotes every 20 seconds
-window.setInterval(printQuote, 20000);
+//Initialise quote button with countdown timer
+document.getElementById("load-quote").innerHTML = `Show another quote in ${countdown} seconds`
 
 /***
  * click event listener for the print quote button
