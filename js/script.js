@@ -119,13 +119,13 @@ function getRandomQuote(quotes) {
  * Generate a random background colour in rgb() format
  * by generating random Red, Green and Blue values as an array
  * then converting into a string to use as input for rgb()
- * Max value of 156 was used to ensure background colour is darker
+ * Max value of 155 was used to ensure background colour is darker
  * and quote is more readable with white text.
 ***/
 function getRandomBgColour() {
   let colour = [];
   for (let i = 1; i <= 3; i++) {
-    colour.push(`${Math.floor(Math.random() * 156)}`);
+    colour.push(`${Math.floor(Math.random() * 155)}`);
   }
   return `rgb(${colour.toString()})`;
 }
