@@ -78,22 +78,31 @@ const quotes = [
   }
 ]
 /***
+ * `printCountdown` function
  * Auto refresh quotes every 20 seconds
  * Display a countdown timer to indicate how many seconds left before the quotes refresh
 ***/
 let countdown = 20;
-window.setInterval(function () {
+function printCountdown() {
   if (countdown <= 0) {
     printQuote();
-    countdown = 20;
+    resetCountdown(20);
     document.getElementById("load-quote").innerHTML = `Show another quote in ${countdown} seconds`
-  } else if (countdown === 1) {
-    document.getElementById("load-quote").innerHTML = `Show another quote in ${countdown} second`
   } else {
-    document.getElementById("load-quote").innerHTML = `Show another quote in ${countdown} seconds`
+    document.getElementById("load-quote").innerHTML = `Show another quote in ${countdown} ${countdown === 1 ? `second` : `seconds`}`
   }
   countdown--;
-}, 1000)
+}
+
+window.setInterval(printCountdown, 1000)
+
+/***
+ * `resetCountdown` function
+ * Reset countdown to the specified number of seconds
+***/
+function resetCountdown(seconds) {
+  countdown = seconds;
+}
 
 /***
  * `getRandomQuote` function
@@ -141,7 +150,7 @@ function printQuote() {
   document.getElementById("quote-box").innerHTML = html;
 
   //Reset countdown once a new quote is printed
-  countdown = 20;
+  resetCountdown(20);
 
   document.querySelector("body").style = `background-color: ${getRandomBgColour()}`
 }
